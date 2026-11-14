@@ -1,0 +1,31 @@
+2026-11-10 11:54:11,247 | INFO     | Sistema Software FJ iniciado
+2026-11-10 11:54:11,248 | INFO     | REGISTRAR CLIENTE exitoso | [CLI-001] Ana Maria Perez | Doc: 1065432100 | ana.perez@correo.com | Tel: 3001234567
+2026-11-10 11:54:11,248 | ERROR    | REGISTRAR CLIENTE fallido | Documento invalido: '10654abc' (solo numeros, 6 a 12 digitos).
+2026-11-10 11:54:11,248 | INFO     | REGISTRAR CLIENTE exitoso | [CLI-002] Carlos Andres Ruiz | Doc: 1102233445 | carlos.ruiz@empresa.co | Tel: 3157894561
+2026-11-10 11:54:11,248 | ERROR    | REGISTRAR CLIENTE fallido | Ya existe un cliente con el documento 1102233445.
+2026-11-10 11:54:11,248 | INFO     | REGISTRAR SERVICIO exitoso | [SRV-001] Sala 'Sala Innovacion' | capacidad 10 personas | $50,000/hora | disponible
+2026-11-10 11:54:11,248 | INFO     | REGISTRAR SERVICIO exitoso | [SRV-002] Equipo 'Portatil Gamer' x2 | $8,000/hora c/u | deposito $100,000 | disponible
+2026-11-10 11:54:11,248 | INFO     | REGISTRAR SERVICIO exitoso | [SRV-003] Asesoria en 'Ciberseguridad' (nivel senior) | $120,000/hora | disponible
+2026-11-10 11:54:11,248 | ERROR    | REGISTRAR SERVICIO fallido | La tarifa por hora debe ser un numero positivo (recibido: -500).
+2026-11-10 11:54:11,248 | INFO     | CREAR RESERVA exitoso | [RES-001] Ana Maria Perez -> Sala Innovacion | 3 h | Pendiente
+2026-11-10 11:54:11,248 | ERROR    | CREAR RESERVA fallido | No se pudo crear la reserva de 'Sala Innovacion': Sala Innovacion: la duracion debe estar entre 1 y 8 horas (recibido: 20).
+2026-11-10 11:54:11,248 | INFO     | CONFIRMAR exitoso | RES-001
+2026-11-10 11:54:11,248 | DEBUG    | CONFIRMAR intento finalizado | RES-001
+2026-11-10 11:54:11,248 | INFO     | PROCESAR exitoso | RES-001 | costo final: $160,650.00
+2026-11-10 11:54:11,248 | DEBUG    | PROCESAR intento finalizado | RES-001
+2026-11-10 11:54:11,248 | ERROR    | CANCELAR fallido | RES-001: no se puede cancelar una reserva procesada.
+2026-11-10 11:54:11,248 | DEBUG    | CANCELAR intento finalizado | RES-001
+2026-11-10 11:54:11,248 | ERROR    | CREAR RESERVA fallido | El servicio 'Portatil Gamer' no esta disponible.
+2026-11-10 11:54:11,248 | ERROR    | CREAR RESERVA fallido | Una reserva requiere cliente, servicio y duracion (horas).
+2026-11-10 11:54:11,248 | ERROR    | CREAR RESERVA fallido | No existe el cliente con ID 'CLI-999'.
+2026-11-10 11:54:11,248 | INFO     | CREAR RESERVA exitoso | [RES-002] Carlos Andres Ruiz -> Ciberseguridad | 2 h | Pendiente
+2026-11-10 11:54:11,248 | INFO     | CONFIRMAR exitoso | RES-002
+2026-11-10 11:54:11,248 | DEBUG    | CONFIRMAR intento finalizado | RES-002
+2026-11-10 11:54:11,248 | INFO     | PROCESAR exitoso | RES-002 | costo final: $428,400.00
+2026-11-10 11:54:11,248 | DEBUG    | PROCESAR intento finalizado | RES-002
+2026-11-10 11:54:11,249 | INFO     | CREAR RESERVA exitoso | [RES-003] Ana Maria Perez -> Ciberseguridad | 1 h | Pendiente
+2026-11-10 11:54:11,249 | INFO     | CONFIRMAR exitoso | RES-003
+2026-11-10 11:54:11,249 | DEBUG    | CONFIRMAR intento finalizado | RES-003
+2026-11-10 11:54:11,249 | ERROR    | PROCESAR fallido | RES-003 | Descuento fuera de rango (0 a 0.50): 0.9.
+2026-11-10 11:54:11,249 | DEBUG    | PROCESAR intento finalizado | RES-003
+2026-11-10 11:54:11,249 | INFO     | Simulacion finalizada | exitosas=9 | con error controlado=9
