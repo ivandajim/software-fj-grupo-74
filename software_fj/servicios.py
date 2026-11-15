@@ -28,7 +28,7 @@ class Servicio(EntidadBase, ABC):
     """Clase abstracta: define lo que TODO servicio debe saber hacer."""
 
     prefijo = "SRV"
-    IVA_POR_DEFECTO = 0.19            # 19 % de IVA, usado cuando no se indica otro impuesto
+    IVA_POR_DEFECTO = 0.19              # 19 % de IVA, usado cuando no se indica otro impuesto
 
     def __init__(self, nombre, tarifa_hora, disponible=True):
         if nombre is None or tarifa_hora is None:                    # Faltan datos obligatorios
@@ -67,6 +67,11 @@ class Servicio(EntidadBase, ABC):
     @abstractmethod
     def calcular_costo(self, horas, impuesto=0.0, descuento=0.0):
         """Calcula el costo total. Sobrecarga simulada con impuesto y descuento opcionales."""
+
+    # NUEVO MÉTODO SOLICITADO: Calcula el costo aplicando por defecto el IVA predeterminado de la clase
+    def calcular_costo_con_iva(self, horas, descuento=0.0):
+        # Llama al método calcular_costo pasando el IVA_POR_DEFECTO y el descuento recibido
+        return self.calcular_costo(horas, self.IVA_POR_DEFECTO, descuento)
 
     # ---------- Utilidad compartida por los hijos ----------
     def _validar_horas_basico(self, horas, minimo, maximo):
@@ -140,6 +145,12 @@ class AlquilerEquipo(Servicio):
 
     def calcular_costo(self, horas, impuesto=0.0, descuento=0.0):
         self.validar_parametros(horas)
+        
+        # MODIFICACIÓN SOLICITADA: Aplica 10% de descuento automático si la cantidad es de 5 o más equipos
+        if self._cantidad >= 5:
+            # Si el descuento enviado es menor al 10%, forzamos el 0.10 (10% de descuento automático por volumen)
+            descuento = max(descuento, 0.10)
+
         subtotal = self.tarifa_hora * horas * self.cantidad + self._deposito
         return self._aplicar_ajustes(subtotal, impuesto, descuento)
 
