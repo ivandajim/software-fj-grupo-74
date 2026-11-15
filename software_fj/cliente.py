@@ -45,12 +45,19 @@ class Cliente(EntidadBase):
     def nombre(self):
         return self._nombre
 
-    @nombre.setter
-    def nombre(self, valor):
-        valor = self._texto_obligatorio(valor, "nombre")
-        if not PATRON_NOMBRE.match(valor):
-            raise ClienteInvalidoError(f"Nombre invalido: '{valor}' (solo letras, 3 a 60 caracteres).")
-        self._nombre = valor.title()                                 # Guarda con formato Nombre Apellido
+
+@nombre.setter
+def nombre(self, valor):  # Setter encargado de validar y guardar el nombre.
+    valor = self._texto_obligatorio(valor, "nombre")  # Verifica que el nombre no esté vacío.
+
+    if not PATRON_NOMBRE.match(valor):  # Comprueba que solo tenga letras y espacios.
+        raise ClienteInvalidoError(f"Nombre invalido: '{valor}' (solo letras, 3 a 60 caracteres).")  # Informa si el formato es incorrecto.
+
+    if len(valor.split()) < 2:  # Comprueba que el nombre tenga al menos dos palabras.
+        raise ClienteInvalidoError("Debe ingresar nombre y apellido.")  # Rechaza nombres sin apellido.
+
+    self._nombre = valor.title()  # Guarda el nombre y apellido con iniciales mayúsculas.
+
 
     @property
     def documento(self):
@@ -84,6 +91,13 @@ class Cliente(EntidadBase):
         if not PATRON_TELEFONO.match(valor):
             raise ClienteInvalidoError(f"Telefono invalido: '{valor}' (7 a 10 digitos).")
         self._telefono = valor
+
+# Método para actualizar el correo y el teléfono del cliente.
+def actualizar_contacto(self, correo, telefono):  # Recibe los dos nuevos datos.
+
+    self.correo = correo  # Actualiza el correo utilizando su setter y validación.
+
+    self.telefono = telefono  # Actualiza el teléfono utilizando su setter y validación.
 
     # ---------- Metodo abstracto implementado ----------
     def describir(self):
